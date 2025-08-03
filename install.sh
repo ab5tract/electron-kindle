@@ -19,10 +19,13 @@ cp Kindle.png $ICONS_PATH
 log "Installing NPM dependecies..."
 npm i
 
-log "Giving execution permisions to kindle.sh..."
-chmod +x kindle.sh
+log "Making flatpak distribution..."
+npm run make
 
-log "Intsalling desktop app..."
+log "Installing flatpak..."
+flatpak install --user io.atom.electron.kindle
+
+log "Installing desktop app..."
 desktop-file-install --dir=$APPLICATIONS_PATH kindle.desktop
 
 log "Updating apps..."
