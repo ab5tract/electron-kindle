@@ -13,20 +13,20 @@ create_path() {
 create_path $ICONS_PATH
 create_path $APPLICATIONS_PATH
 
-log "Copying logo to $ICONS_PATH..."
+log "Copying logo to $ICONS_PATH ..."
 cp Kindle.png $ICONS_PATH
 
-log "Installing NPM dependecies..."
+log "Installing NPM dependecies ..."
 npm i
 
-log "Making flatpak distribution..."
+log "Making flatpak distribution ..."
 npm run make
 
-log "Installing flatpak..."
+log "Installing flatpak ..."
 flatpak install --user io.atom.electron.kindle
 
-log "Installing desktop app..."
+log "Installing kindle.desktop to ~/.config/local/share/applications ..."
 desktop-file-install --dir=$APPLICATIONS_PATH kindle.desktop
 
-log "Updating apps..."
+log "Updating application database ..."
 update-desktop-database $APPLICATIONS_PATH

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, shell, BrowserWindow } = require('electron');
 
 const KINDLE_URL = 'https://read.amazon.com/';
 
@@ -8,13 +8,19 @@ function createWindow() {
     width: 1000,
     height: 940,
     autoHideMenuBar: true
-  })
+  });
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: 'deny' };
+  });
 
   win.loadURL(KINDLE_URL);
 }
 
 app.whenReady().then(() => {
   createWindow()
+
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
