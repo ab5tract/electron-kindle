@@ -23,7 +23,8 @@ log "Making flatpak distribution ..."
 npm run make
 
 log "Installing flatpak ..."
-flatpak install --user io.atom.electron.kindle
+#flatpak install --user io.atom.electron.kindle
+flatpak install --user out/make/flatpak/x86_64/io.atom.electron.kindle_stable_x86_64.flatpak
 
 log "Installing kindle.desktop to ~/.config/local/share/applications ..."
 desktop-file-install --dir=$APPLICATIONS_PATH kindle.desktop
